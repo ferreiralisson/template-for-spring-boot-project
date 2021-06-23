@@ -1,0 +1,46 @@
+# Nomenclatura de versões ex : v0.0.1
+# 1 - grandas features
+# 2 - correcao de bug
+# 3 - pequenas features
+
+spring:
+  profiles:
+    active: ${PROFILE}
+  datasource:
+    tomcat:
+      validation-query: SELECT 1
+      test-while-idle: true
+      testOnBorrow: true
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: GMT-3
+  mail:
+    host: ${EMAIL_HOST}
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: ${EMAIL_PORT}
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+        starttls:
+          enable: true
+        ssl:
+          enable: true
+
+default:
+  sender: ${EMAIL_USERNAME}
+  recipient: ${EMAIL_USERNAME}
+
+jwt:
+  secret: ${TOKEN_SECRET}
+  expiration: ${TOKEN_EXPIRATION}
+
+server:
+  error:
+    include-stacktrace: on_param
